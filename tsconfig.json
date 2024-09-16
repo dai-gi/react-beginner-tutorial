@@ -1,3 +1,5 @@
+// TypeScriptの設定ファイル
+// TypeScriptコンパイラの設定などを行えたりする
 {
   "files": [],
   "references": [
