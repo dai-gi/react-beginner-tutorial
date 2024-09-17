@@ -11,7 +11,7 @@ import {
   ChakraProvider
 } from '@chakra-ui/react';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type Record = {
   id: number;
@@ -27,6 +27,17 @@ function App() {
   const [title, setTitle] = useState('');
   const [amount, setAmount] = useState(0);
   const [isIncome, setIsIncome] = useState(false);
+
+  // 外部のデータと同期するときに使用するReactフック
+  useEffect(() => {
+    getRecords();
+
+    async function getRecords() {
+      const response = await fetch('http://localhost:3000/records');
+      const data = await response.json();
+      setRecords(data);
+    }
+  }, []);
 
   const addRecord = () => {
     const newRecord: Record = {
